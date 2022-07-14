@@ -1,0 +1,26 @@
+{% extends "to-do-app/layout.html" %}
+{% load static %}
+{%block content%}
+<form action="{% url 'todos:new' %}" method="POST">
+    {% csrf_token %}
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <td>Title:</td>
+                <input type="text" name="title">
+            </div>
+            <div class="col">
+                <td>Description:</td>
+                <input type="text" name="description">
+            </div>
+            <div class="col">
+                <td>Due Date:</td>
+                <input type="date" name="due_date" placeholder="yyyy-mm-dd">
+            </div>
+            <div class="col">
+                <button type="submit">Submit</button>
+            </div>
+        </div>
+    </div>
+</form>
+{% endblock %}

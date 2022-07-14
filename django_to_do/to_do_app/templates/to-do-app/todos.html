@@ -1,0 +1,61 @@
+{% extends "to-do-app/layout.html" %}
+{% load static %}
+
+    {%block content%}
+    <div class="container p-5">
+        <button><a href="{% url 'todos:new' %}">Add New</a></button>
+    </div>
+    <!--checking for list and if present building out the list for viewing-->
+    {% if item_list %}
+    <ul class="list-group">
+        <li>
+            <div class="container">
+                <div class="row">
+                    <div class="col-1">
+                        <p><strong>ID</strong></p>
+                    </div>
+                    <div class="col-2">
+                        <p><strong>Title</strong></p>
+                    </div>
+                    <div class="col-3">
+                        <p><strong>Description</strong></p>
+                    </div>
+                    <div class="col-3">
+                        <p><strong>Due Date</strong></p>
+                    </div>
+                    <div class="col-3">
+                        <p><strong>Created Date</strong></p>
+                    </div>
+                </div>
+            </div>
+        </li>
+        <!--Building out the list and using dictsort to sort by id number-->
+        {% for item in item_list|dictsort:"id" %}
+        <li class="list-group-item">
+            <div class="container">
+                <div class="row">
+                    <div class="col-1">
+                        <p><a href="{% url 'todos:edit' id=item.id %}">{{ item.id }}</a></p>
+                    </div>
+                    <div class="col-2">
+                        <p>{{ item.title }}</p>
+                    </div>
+                    <div class="col-3">
+                        <p>{{ item.description }}</p>
+                    </div>
+                    <div class="col-3">
+                        <p>{{ item.due_date }}</p>
+                    </div>
+                    <div class="col-2">
+                        <p>{{ item.created_date }}</p>
+                    </div>
+                    <div class="col-1">
+                        <a href="{% url 'todos:delete' id=item.id %}">delete</a>
+                    </div>
+                </div>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endblock %}

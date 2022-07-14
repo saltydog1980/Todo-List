@@ -1,0 +1,28 @@
+{% extends "to-do-app/layout.html" %}
+{% load static %}
+{%block content%}
+<!--using form values to pre-populate input fields with db values-->
+<form action="{% url 'todos:edit' id=item.id %}" method="POST">
+    {% csrf_token %}
+    <div class="container">
+        <div class="row">
+            <h3>You are editting item ID #{{ item.id }}</h3>
+            <div class="col">
+                <td>Title:</td>
+                <input type="text" name="title" value="{{ item.title }}">
+            </div>
+            <div class="col">
+                <td>Description:</td>
+                <input type="text" name="description" value="{{ item.description }}">
+            </div>
+            <div class="col">
+                <td>Due Date:</td><!--doing some date formatting to make the DB happy on return trip if not modified by user-->
+                <input type="text" name="due_date" value="{{ item.due_date|date:'Y-m-d' }}">
+            </div>
+            <div class="col">
+                <button type="submit">Submit</button>
+            </div>
+        </div>
+    </div>
+</form>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends "to-do-app/layout.html" %}
+{% load static %}
+    {%block content%}
+    <div class="container pt-5">
+        <form>
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="first">First Name</span>
+                <input type="text" id="first_name" class="form-control">
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="last">Last Name</span>
+                <input type="text" id="last_name" class="form-control">
+            </div>
+            <div class="input-group flex-nowrap mb-3">
+                <span class="input-group-text" id="email_span">@Email</span>
+                <input type="email" class="form-control" id="email">
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="password">Password</span>
+                <input type="password" id="password" class="form-control">
+            </div>
+            <button onclick="signUp(event)">Submit</button>
+        </form>
+    </div>
+    {% endblock %}
+    
